@@ -1,0 +1,62 @@
+{
+  "name": "svag-logger",
+  "version": "0.1.0",
+  "homepage": "https://github.com/svagcrew/svag-logger",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/svagcrew/svag-logger.git"
+  },
+  "bugs": {
+    "url": "https://github.com/svagcrew/svag-logger/issues"
+  },
+  "author": {
+    "name": "Sergei Dmitriev",
+    "url": "https://sergei.svag.group"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.js",
+  "files": [
+    "./dist/**/*"
+  ],
+  "scripts": {
+    "prettify": "svag-prettier prettify",
+    "dev": "svag-ts dev",
+    "watch": "svag-ts watch",
+    "types": "svag-ts types",
+    "build": "svag-ts build",
+    "start": "svag-ts start",
+    "lint": "svag-lint lint",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.12",
+    "@types/lodash": "^4.17.1",
+    "@types/triple-beam": "^1.3.5",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "eslint": "^9.2.0",
+    "husky": "^9.0.11",
+    "prettier": "^3.2.5",
+    "rimraf": "^5.0.7",
+    "svag-husky": "^0.1.27",
+    "svag-lint": "^0.1.50",
+    "svag-prettier": "^0.1.41",
+    "svag-ts": "^0.1.46",
+    "tsc-alias": "^1.8.10",
+    "typescript": "^5.4.5"
+  },
+  "type": "module",
+  "dependencies": {
+    "debug": "^4.3.4",
+    "errory": "^0.1.3",
+    "lodash": "^4.17.21",
+    "picocolors": "^1.0.1",
+    "svag-deep-map": "^0.1.4",
+    "triple-beam": "^1.4.1",
+    "winston": "^3.13.0",
+    "yaml": "^2.4.2"
+  }
+}

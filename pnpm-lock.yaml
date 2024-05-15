@@ -9,8 +9,8 @@ dependencies:
     specifier: ^4.3.4
     version: 4.3.4
   errory:
-    specifier: ^0.1.4
-    version: 0.1.4
+    specifier: ^0.1.5
+    version: 0.1.5
   lodash:
     specifier: ^4.17.21
     version: 4.17.21
@@ -725,8 +725,8 @@ packages:
       strip-ansi: 6.0.1
     dev: true
 
-  /errory@0.1.4:
-    resolution: {integrity: sha512-nLEmwK60erch0yVH5OQcYMgcTsVYq/PTwaFbox3oHThCswzFNPyO/57rGRsYD9efSaByTE5+v0eqrF/bIAX3Mw==}
+  /errory@0.1.5:
+    resolution: {integrity: sha512-kEeWuiw7OQU98vlypaQrr/GwnYpUcOGXR0tooAcGJIlpt3Wx0lrGotNUecowFEM8dwseTHET+JmifYvf0usYSw==}
     dependencies:
       lodash: 4.17.21
     dev: false

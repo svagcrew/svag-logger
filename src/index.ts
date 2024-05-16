@@ -112,7 +112,7 @@ export const createLogger = ({
         if ('onlyErroriesHaveThisProperty' in props) {
           const errory = toErrory(props)
           return {
-            tag: errory.tag || 'unknown',
+            tag: errory.tag,
             error: errory,
             meta: errory.meta,
           }
@@ -120,6 +120,7 @@ export const createLogger = ({
           return props as { tag: string; error: any; meta?: Record<string, any> }
         }
       })()
+      props.tag = tag || 'unknown'
       // if (!originalError.expected) {
       //   sentryCaptureException(error)
       // }
@@ -151,3 +152,5 @@ export const createLogger = ({
     winstonLogger,
   }
 }
+
+export type Logger = ReturnType<typeof createLogger>['logger']

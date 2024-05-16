@@ -1,6 +1,6 @@
 import debug from 'debug'
-import { ErroryType, prepareErroryDataForHumanLogging, ToErroryType } from 'errory'
-import { isFunction, omit, trim } from 'lodash'
+import { createErroryThings, ErroryInstanceType, prepareErroryDataForHumanLogging, ToErroryType } from 'errory'
+import _ from 'lodash'
 import { EOL } from 'os'
 import pc from 'picocolors'
 import { deepMap } from 'svag-deep-map'
@@ -34,8 +34,9 @@ export const createLogger = ({
   format: 'json' | 'human-yaml'
   defaultMeta?: Record<string, any>
   sensetiveKeys?: string[]
-  toErrory: ToErroryType
+  toErrory?: ToErroryType
 }) => {
+  toErrory = toErrory || createErroryThings().toErrory
   const winstonLogger = winston.createLogger({
     level: 'debug',
     format: winston.format.combine(
@@ -61,11 +62,11 @@ export const createLogger = ({
                 const topMessage = `${setColor(levelAndType)} ${pc.green(logData.timestamp)}${EOL}${logData.message}`
 
                 const visibleMessageTags = prepareErroryDataForHumanLogging(
-                  omit(logData, ['level', 'tag', 'tags', 'timestamp', 'message', 'service', 'hostEnv'])
+                  _.omit(logData, ['level', 'tag', 'timestamp', 'message', 'service', 'hostEnv'])
                 )
 
-                const stringifyedLogData = trim(
-                  yaml.stringify(visibleMessageTags, (k, v) => (isFunction(v) ? 'Function' : v))
+                const stringifyedLogData = _.trim(
+                  yaml.stringify(visibleMessageTags, (k, v) => (_.isFunction(v) ? 'Function' : v))
                 )
 
                 const resultLogData = {
@@ -96,16 +97,15 @@ export const createLogger = ({
   }
 
   const logger = {
-    info: (tag: string, message: string, meta?: Record<string, any>) => {
-      if (!debug.enabled(`${projectSlug}:${tag}`) || meta?.query?.includes?.('TestCreatedAtLog')) {
+    info: (props: { tag: string; message: string; meta?: Record<string, any> }) => {
+      if (!debug.enabled(`${projectSlug}:${props.tag}`)) {
         return
       }
-      winstonLogger.info(message, { tag, ...normalizeLogMeta(meta) })
+      winstonLogger.info(props.message, { tag: props.tag, ...normalizeLogMeta(props.meta) })
     },
-    error: (props: { tag: string; tags: string[]; error: any; meta?: Record<string, any> } | ErroryType) => {
+    error: (props: { tag: string; error: any; meta?: Record<string, any> } | ErroryInstanceType) => {
       const {
         tag,
-        tags,
         error,
         meta = {},
       } = (() => {
@@ -113,12 +113,11 @@ export const createLogger = ({
           const errory = toErrory(props)
           return {
             tag: errory.tag || 'unknown',
-            tags: errory.tags,
             error: errory,
             meta: errory.meta,
           }
         } else {
-          return props as { tag: string; tags: string[]; error: any; meta?: Record<string, any> }
+          return props as { tag: string; error: any; meta?: Record<string, any> }
         }
       })()
       // if (!originalError.expected) {
@@ -139,9 +138,8 @@ export const createLogger = ({
       // }
       const errory = toErrory(error)
       winstonLogger.error(errory.message || 'Unknown error', {
-        ...omit(errory, ['meta', 'tag', 'tags']),
+        ..._.omit(errory, ['meta', 'tag', 'tags']),
         tag: tag || errory.tag || 'unknown',
-        tags: tags || errory.tags || ['unknown'],
         ...normalizeLogMeta(meta),
         stack: errory.stack || error.stack,
       })

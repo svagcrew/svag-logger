@@ -1,5 +1,6 @@
 import debug from 'debug'
-import { createErroryThings, ErroryInstanceType, prepareErroryDataForHumanLogging, ToErroryType } from 'errory'
+import type { ErroryInstanceType, ToErroryType } from 'errory'
+import { createErroryThings, prepareErroryDataForHumanLogging } from 'errory'
 import _ from 'lodash'
 import { EOL } from 'os'
 import pc from 'picocolors'

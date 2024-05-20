@@ -9,8 +9,8 @@ dependencies:
     specifier: ^4.3.4
     version: 4.3.4
   errory:
-    specifier: ^0.1.9
-    version: 0.1.9
+    specifier: ^0.1.10
+    version: 0.1.10
   lodash:
     specifier: ^4.17.21
     version: 4.17.21
@@ -18,8 +18,8 @@ dependencies:
     specifier: ^1.0.1
     version: 1.0.1
   svag-deep-map:
-    specifier: ^0.1.10
-    version: 0.1.10
+    specifier: ^0.1.11
+    version: 0.1.11
   triple-beam:
     specifier: ^1.4.1
     version: 1.4.1
@@ -1918,8 +1918,8 @@ packages:
       is-arrayish: 0.2.1
     dev: true
 
-  /errory@0.1.9:
-    resolution: {integrity: sha512-N/gBf3P5DFb5CyoDxixlXpSXFq1iZ/yPY/04kOR2KNjbm6P5wVGTKpNWLmLQt+MrMCDaZVjjPzWDmQ/6xbE2zQ==}
+  /errory@0.1.10:
+    resolution: {integrity: sha512-hl1jqztAQTz1aUh263Io9MHHv3lVvSJGIvxrwMRCVqdEYo9j/oI6D8SQvLU9lNkL8Xep8Nfpd/e5kBtS95OtPg==}
     dependencies:
       lodash: 4.17.21
     dev: false
@@ -4693,8 +4693,8 @@ packages:
       - babel-plugin-macros
     dev: true
 
-  /svag-deep-map@0.1.10:
-    resolution: {integrity: sha512-pBF8U0YRm8SXKivl42z6MqDG7qNE70XpjpojZKD9JkPxi3j+3R99rW4X834mOLxyUWcj6ex3nP8CgEhHdUCH9A==}
+  /svag-deep-map@0.1.11:
+    resolution: {integrity: sha512-oUvsLWmMAjBFtj56WHMaXL1lHgLNEQAVCTEdSpZrpSY5cOmU8COLGk2rsY1gJc4rhe/SYV6tEr4tLxCcKJuEmw==}
     dependencies:
       lodash: 4.17.21
     dev: false

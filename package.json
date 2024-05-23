@@ -52,7 +52,7 @@
   "type": "module",
   "dependencies": {
     "debug": "^4.3.4",
-    "errory": "^0.1.10",
+    "errory": "^0.1.11",
     "lodash": "^4.17.21",
     "picocolors": "^1.0.1",
     "svag-deep-map": "^0.1.11",

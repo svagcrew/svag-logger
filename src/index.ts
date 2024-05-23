@@ -1,6 +1,6 @@
 /* eslint-disable n/no-process-env */
 import debug from 'debug'
-import type { ErroryInstanceType, ToErroryType } from 'errory'
+import type { ErroryInstanceType, ErroryType } from 'errory'
 import { createErroryThings, prepareErroryDataForHumanLogging } from 'errory'
 import _ from 'lodash'
 import { EOL } from 'os'
@@ -13,7 +13,7 @@ import * as yaml from 'yaml'
 export const createLogger = ({
   projectSlug,
   format,
-  toErrory,
+  Errory,
   defaultMeta = {},
   sensetiveKeys = [
     'email',
@@ -36,12 +36,12 @@ export const createLogger = ({
   format: 'json' | 'human-yaml'
   defaultMeta?: Record<string, any>
   sensetiveKeys?: string[]
-  toErrory?: ToErroryType
+  Errory?: ErroryType
 }) => {
   if (process.env.DEBUG) {
     debug.enable(process.env.DEBUG)
   }
-  toErrory = toErrory || createErroryThings().toErrory
+  Errory = Errory || createErroryThings().Errory
   const winstonLogger = winston.createLogger({
     level: 'debug',
     format: winston.format.combine(
@@ -115,7 +115,7 @@ export const createLogger = ({
         meta = {},
       } = (() => {
         if ('onlyErroriesHaveThisProperty' in props) {
-          const errory = toErrory(props)
+          const errory = Errory.toErrory(props)
           return {
             tag: errory.tag,
             error: errory,
@@ -142,7 +142,7 @@ export const createLogger = ({
       //   meta.axiosData = axiosError.response?.data
       //   meta.axiosStatus = axiosError.response?.status
       // }
-      const errory = toErrory(error)
+      const errory = Errory.toErrory(error)
       winstonLogger.error(errory.message || 'Unknown error', {
         ..._.omit(errory, ['meta', 'tag', 'tags']),
         tag: tag || errory.tag || 'unknown',

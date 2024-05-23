@@ -1,3 +1,4 @@
+/* eslint-disable n/no-process-env */
 import debug from 'debug'
 import type { ErroryInstanceType, ToErroryType } from 'errory'
 import { createErroryThings, prepareErroryDataForHumanLogging } from 'errory'
@@ -37,6 +38,9 @@ export const createLogger = ({
   sensetiveKeys?: string[]
   toErrory?: ToErroryType
 }) => {
+  if (process.env.DEBUG) {
+    debug.enable(process.env.DEBUG)
+  }
   toErrory = toErrory || createErroryThings().toErrory
   const winstonLogger = winston.createLogger({
     level: 'debug',

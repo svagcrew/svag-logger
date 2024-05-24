@@ -15,6 +15,7 @@ export const createLogger = ({
   format,
   Errory,
   defaultMeta = {},
+  trackError,
   sensetiveKeys = [
     'email',
     'oldEmail',
@@ -36,6 +37,7 @@ export const createLogger = ({
   format: 'json' | 'human-yaml'
   defaultMeta?: Record<string, any>
   sensetiveKeys?: string[]
+  trackError?: (error: any, meta?: any) => any
   Errory?: ErroryType
 }) => {
   if (process.env.DEBUG) {
@@ -126,9 +128,9 @@ export const createLogger = ({
         }
       })()
       props.tag = tag || 'unknown'
-      // if (!originalError.expected) {
-      //   sentryCaptureException(error)
-      // }
+      if (!error.expected) {
+        trackError?.(error, meta)
+      }
       if (!debug.enabled(`${projectSlug}:${tag}`)) {
         return
       }

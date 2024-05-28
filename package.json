@@ -42,10 +42,10 @@
     "husky": "^9.0.11",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.7",
-    "svag-husky": "^0.1.39",
-    "svag-lint": "^0.1.62",
-    "svag-prettier": "^0.1.53",
-    "svag-ts": "^0.1.58",
+    "svag-husky": "^0.1.41",
+    "svag-lint": "^0.1.64",
+    "svag-prettier": "^0.1.55",
+    "svag-ts": "^0.1.60",
     "tsc-alias": "^1.8.10",
     "typescript": "^5.4.5"
   },
@@ -55,7 +55,7 @@
     "errory": "^0.1.13",
     "lodash": "^4.17.21",
     "picocolors": "^1.0.1",
-    "svag-deep-map": "^0.1.11",
+    "svag-deep-map": "^0.1.12",
     "triple-beam": "^1.4.1",
     "winston": "^3.13.0",
     "yaml": "^2.4.2"

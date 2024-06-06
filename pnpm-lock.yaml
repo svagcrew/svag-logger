@@ -9,8 +9,8 @@ dependencies:
     specifier: ^4.3.4
     version: 4.3.4
   errory:
-    specifier: ^0.1.15
-    version: 0.1.15
+    specifier: ^0.1.16
+    version: 0.1.16
   lodash:
     specifier: ^4.17.21
     version: 4.17.21
@@ -2125,8 +2125,8 @@ packages:
       is-arrayish: 0.2.1
     dev: true
 
-  /errory@0.1.15:
-    resolution: {integrity: sha512-jvbPumGoSIXESg0EXIBtKWuUpl1dV+nRzcIvLqkLZK8KfdQDgq9Qknll/VK83TBw7C7z9VdrR7zJA7PbcA5Wqw==}
+  /errory@0.1.16:
+    resolution: {integrity: sha512-AnlrDbjhAnOlucO5713zA0RUTmKaIrf2eIYdwxtVCaevUk3izah+PWlqdXHVqhGXrLJFIRXLagu8AsCCwcJYSA==}
     dependencies:
       lodash: 4.17.21
     dev: false

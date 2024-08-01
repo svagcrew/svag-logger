@@ -123,6 +123,13 @@ export const createLogger = ({
             error: errory,
             meta: errory.meta,
           }
+        } else if ('onlyErroriesHaveThisProperty' in props.error) {
+          const errory = Errory.toErrory(props.error)
+          return {
+            tag: errory.tag,
+            error: errory,
+            meta: errory.meta,
+          }
         } else {
           return props as { tag: string; error: any; meta?: Record<string, any> }
         }

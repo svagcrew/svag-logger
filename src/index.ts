@@ -15,6 +15,7 @@ export const createLogger = ({
   format,
   Errory,
   defaultMeta = {},
+  invisibleLogProps = ['service', 'hostEnv'],
   trackError,
   sensetiveKeys = [
     'email',
@@ -37,12 +38,14 @@ export const createLogger = ({
   format: 'json' | 'human-yaml'
   defaultMeta?: Record<string, any>
   sensetiveKeys?: string[]
+  invisibleLogProps?: string[]
   trackError?: (error: any, meta?: any) => any
   Errory?: ErroryType
 }) => {
   if (process.env.DEBUG) {
     debug.enable(process.env.DEBUG)
   }
+
   Errory = Errory || createErroryThings().Errory
   const winstonLogger = winston.createLogger({
     level: 'debug',
@@ -68,18 +71,18 @@ export const createLogger = ({
                 const levelAndType = `${logData.level} ${logData.tag}`
                 const topMessage = `${setColor(levelAndType)} ${pc.green(logData.timestamp)}${EOL}${logData.message}`
 
-                const visibleMessageTags = prepareErroryDataForHumanLogging(
-                  _.omit(logData, ['level', 'tag', 'timestamp', 'message', 'service', 'hostEnv'])
+                const visibleLogProps = prepareErroryDataForHumanLogging(
+                  _.omit(logData, ['level', 'tag', 'timestamp', 'message', ...invisibleLogProps])
                 )
 
                 const stringifyedLogData = _.trim(
-                  yaml.stringify(visibleMessageTags, (k, v) => (_.isFunction(v) ? 'Function' : v))
+                  yaml.stringify(visibleLogProps, (k, v) => (_.isFunction(v) ? 'Function' : v))
                 )
 
                 const resultLogData = {
                   ...logData,
                   [MESSAGE]:
-                    [topMessage, Object.keys(visibleMessageTags).length > 0 ? `${EOL}${stringifyedLogData}` : '']
+                    [topMessage, Object.keys(visibleLogProps).length > 0 ? `${EOL}${stringifyedLogData}` : '']
                       .filter(Boolean)
                       .join('') + EOL,
                 }

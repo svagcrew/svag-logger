@@ -74,11 +74,9 @@ export const createLogger = ({
                 const visibleLogProps = prepareErroryDataForHumanLogging(
                   _.omit(logData, ['level', 'tag', 'timestamp', 'message', ...invisibleLogProps])
                 )
-
                 const stringifyedLogData = _.trim(
                   yaml.stringify(visibleLogProps, (k, v) => (_.isFunction(v) ? 'Function' : v))
                 )
-
                 const resultLogData = {
                   ...logData,
                   [MESSAGE]:

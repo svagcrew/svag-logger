@@ -16,6 +16,7 @@ export const createLogger = ({
   Errory,
   defaultMeta = {},
   invisibleLogProps = ['service', 'hostEnv'],
+  alwaysLogErrors,
   trackError,
   sensetiveKeys = [
     'email',
@@ -39,6 +40,7 @@ export const createLogger = ({
   defaultMeta?: Record<string, any>
   sensetiveKeys?: string[]
   invisibleLogProps?: string[]
+  alwaysLogErrors?: boolean
   trackError?: (error: any, meta?: any) => any
   Errory?: ErroryType
 }) => {
@@ -139,7 +141,7 @@ export const createLogger = ({
       if (!error.expected) {
         trackError?.(error, meta)
       }
-      if (!debug.enabled(`${projectSlug}:${tag}`)) {
+      if (!debug.enabled(`${projectSlug}:${tag}`) && !alwaysLogErrors) {
         return
       }
       // const axiosError =

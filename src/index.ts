@@ -126,8 +126,22 @@ export const createLogger = ({
             error: errory,
             meta: errory.meta,
           }
-        } else if ('onlyErroriesHaveThisProperty' in props.error) {
+        } else if (props.error && 'onlyErroriesHaveThisProperty' in props.error) {
           const errory = Errory.toErrory(props.error)
+          return {
+            tag: errory.tag,
+            error: errory,
+            meta: errory.meta,
+          }
+        } else if ((props as any).cause && 'onlyErroriesHaveThisProperty' in (props as any).cause) {
+          const errory = Errory.toErrory((props as any).cause)
+          return {
+            tag: errory.tag,
+            error: errory,
+            meta: errory.meta,
+          }
+        } else if (props.error?.cause && 'onlyErroriesHaveThisProperty' in props.error.cause) {
+          const errory = Errory.toErrory(props.error.cause)
           return {
             tag: errory.tag,
             error: errory,

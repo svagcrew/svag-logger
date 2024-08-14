@@ -18,6 +18,7 @@ export const createLogger = ({
   invisibleLogProps = ['service', 'hostEnv'],
   alwaysLogErrors,
   trackError,
+  debugConfig = process.env.DEBUG || '*',
   sensetiveKeys = [
     'email',
     'oldEmail',
@@ -40,13 +41,12 @@ export const createLogger = ({
   defaultMeta?: Record<string, any>
   sensetiveKeys?: string[]
   invisibleLogProps?: string[]
+  debugConfig: string
   alwaysLogErrors?: boolean
   trackError?: (error: any, meta?: any) => any
   Errory?: ErroryType
 }) => {
-  if (process.env.DEBUG) {
-    debug.enable(process.env.DEBUG)
-  }
+  debug.enable(debugConfig)
 
   Errory = Errory || createErroryThings().Errory
   const winstonLogger = winston.createLogger({

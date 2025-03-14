@@ -154,6 +154,7 @@ export const createLogger = ({
       if (!error) {
         return
       }
+
       props.tag = tag || 'unknown'
       if (!error.expected) {
         trackError?.(error, meta)

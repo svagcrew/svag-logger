@@ -151,6 +151,9 @@ export const createLogger = ({
           return props as { tag: string; error: any; meta?: Record<string, any> }
         }
       })()
+      if (!error) {
+        return
+      }
       props.tag = tag || 'unknown'
       if (!error.expected) {
         trackError?.(error, meta)
